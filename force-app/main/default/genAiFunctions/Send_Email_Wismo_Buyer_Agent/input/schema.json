@@ -1,0 +1,21 @@
+{
+  "required" : [ "UserQuestion", "userEmail" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "UserQuestion" : {
+      "title" : "UserQuestion",
+      "description" : "Plain text string containing the user’s original question that the agent could not answer. Retrieved from the end-user conversation in Agentforce when a query is detected as out of scope. Expected format: unformatted sentence(s) of user input.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "userEmail" : {
+      "title" : "userEmail",
+      "description" : "This will capture the email of the user whose query has not been answered by the agent.\n",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

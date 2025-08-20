@@ -1,0 +1,21 @@
+{
+  "required" : [ "Input:User_Input" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "Input:User_Input" : {
+      "title" : "User Input",
+      "description" : "Input given form user should be the input. For example, in the sentence: \"How many x-ray machines can we deliver in next 2 weeks?\", this weeks may be days , weeks , months or years .",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "outputLanguage" : {
+      "title" : "Prompt Operation output language",
+      "description" : "Select Prompt Operation output language",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

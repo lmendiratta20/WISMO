@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Use this action when the user provides a product name , quantity OR time duration. This action calls a Prompt input. Only use this action if both product, quantity  OR timeDuration are available.</description>
+    <invocationTarget>Product_Sales_Agent</invocationTarget>
+    <invocationTargetType>generatePromptResponse</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <masterLabel>Product Sales Agent Prompt</masterLabel>
+</GenAiFunction>

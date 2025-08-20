@@ -1,0 +1,24 @@
+{
+  "required" : [ "orderId", "userQuestion" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "orderId" : {
+      "title" : "orderId",
+      "description" : "Automatically captures the current Order record when this action is triggered from an Order record page. No manual input is required.",
+      "lightning:type" : "lightning__recordInfoType",
+      "lightning:sObjectInfo" : {
+        "apiName" : "Order"
+      },
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "userQuestion" : {
+      "title" : "userQuestion",
+      "description" : "Ask the user what question they have about the order or shipment.\n",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Use this action when the user provides a product name and quantity and time duration, and you need to calculate the estimated delivery time for that product. This action calls a Salesforce Apex class which calculates total delivery time based on inventory capacity, supplier capacity, backlog, and assembly time. Only use this action after the user&apos;s product and quantity have been extracted and are available.</description>
+    <invocationTarget>DeliveryCalculationService</invocationTarget>
+    <invocationTargetType>apex</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <masterLabel>Calculate Delivery Time</masterLabel>
+</GenAiFunction>

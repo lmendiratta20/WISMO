@@ -1,0 +1,31 @@
+{
+  "required" : [ "Input:Products", "Input:User_Input" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "Input:Products" : {
+      "title" : "Products",
+      "description" : "store product",
+      "lightning:type" : "lightning__recordInfoType",
+      "lightning:sObjectInfo" : {
+        "apiName" : "Product2"
+      },
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "Input:User_Input" : {
+      "title" : "User Input",
+      "description" : "store number of units",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "outputLanguage" : {
+      "title" : "Prompt Operation output language",
+      "description" : "Select Prompt Operation output language",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

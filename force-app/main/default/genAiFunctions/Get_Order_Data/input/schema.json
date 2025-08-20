@@ -1,0 +1,31 @@
+{
+  "required" : [ "orderId", "orderObject", "userQuestion" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "orderId" : {
+      "title" : "orderId",
+      "description" : "Enter the Order ID (e.g., MDI-123456) if this action is triggered from chat or a non-record page.\nIf this action is launched from an Order record page, the Order ID will be automatically retrieved — no manual entry needed.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "orderObject" : {
+      "title" : "orderObject",
+      "description" : "This is the Salesforce Order record associated with the request.\nIt is automatically populated when this action is triggered from the Order record page. No input is needed from the user.",
+      "lightning:type" : "lightning__recordInfoType",
+      "lightning:sObjectInfo" : {
+        "apiName" : "Order"
+      },
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "userQuestion" : {
+      "title" : "userQuestion",
+      "description" : "Enter the user's question related to the order (e.g., \"Where is my order?\" or \"Is the shipment delayed?\").\nIf the user only provides an Order ID without asking a question, prompt them to specify what they want to know about the order.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>This action will be used to send an email to the user whenever the agent is unable to answer their query. Invoke this action whenever the query asked by the user is not in the scope of the agent and a case has been created for follow-up. This includes scenarios where the agent responds with messages such as “Sorry, I’m unable to provide that information,” “This is outside my scope,” or any similar phrasing. The email should inform the user that their request has been escalated to the support team, include the case number, creation date, and the original question, and maintain a professional yet friendly tone.</description>
+    <invocationTarget>Send_Email_Buyer_Agent</invocationTarget>
+    <invocationTargetType>flow</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <masterLabel>Send Email Buyer Agent</masterLabel>
+</GenAiFunction>

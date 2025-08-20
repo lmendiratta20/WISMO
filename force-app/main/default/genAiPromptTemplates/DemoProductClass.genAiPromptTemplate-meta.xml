@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <developerName>DemoProductClass</developerName>
+    <masterLabel>DemoProductClass</masterLabel>
+    <templateVersions>
+        <content>Given the user input below, identify the quantity of machines and the product name.
+
+User can be asked for multiple product and quantity.
+
+Call apex class ProdFetcher and match product name from there and show product name form there.
+
+And send this input to apex class &quot;DeliveryCalculationService&quot; and then show the calculation result
+
+{!$Input:Product.Name}
+
+
+Return result in format:
+
+{
+ &quot;quantity&quot;: &lt;number&gt;,
+ &quot;product&quot;: &quot;&lt;product name&gt;&quot;
+ &quot;Delivery Time:&quot;
+ &quot; delivery status&quot; : 
+}
+</content>
+        <inputs>
+            <apiName>Product</apiName>
+            <definition>SOBJECT://Product2</definition>
+            <masterLabel>Product</masterLabel>
+            <referenceName>Input:Product</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Draft</status>
+    </templateVersions>
+    <type>einstein_gpt__flex</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>

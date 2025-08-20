@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlanner xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>The WISMO Agent assists hospital logistics and procurement teams in tracking the status of critical medical equipment and consumable orders. It provides real-time visibility into shipment progress, identifies delays using structured and unstructured data, and explains potential disruptions with reasoning based on routes, external events, and document analysis. Designed for the medical device supply chain, it ensures customers receive item-level updates and actionable insights to reduce delivery uncertainty and support patient care planning.</description>
+    <genAiFunctions>
+        <genAiFunctionName>EmployeeCopilot__AnswerQuestionsWithKnowledge</genAiFunctionName>
+    </genAiFunctions>
+    <genAiPlugins>
+        <genAiPluginName>Order_Shipment_Status</genAiPluginName>
+    </genAiPlugins>
+    <masterLabel>WISMO Agent</masterLabel>
+    <plannerType>AiCopilot__ReAct</plannerType>
+</GenAiPlanner>

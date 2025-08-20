@@ -1,0 +1,18 @@
+<style>
+    /* Make expanded chat popup bigger */
+    .embeddedServiceLiveAgentChatWindow {
+        width: 500px !important;  /* adjust as desired */
+        height: 650px !important; /* adjust as desired */
+    }
+
+    /* Optional: make minimized chat button bigger */
+    .embeddedServiceHelpButton .helpButton {
+        width: 80px !important;
+        height: 80px !important;
+    }
+
+    /* Optional: make message area taller */
+    .embeddedServiceLiveAgentChatWindow .messageArea {
+        height: 400px !important; /* increase scrollable chat area */
+    }
+</style>

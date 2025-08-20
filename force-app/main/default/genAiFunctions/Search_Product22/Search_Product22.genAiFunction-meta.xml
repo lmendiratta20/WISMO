@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>This generally gives the estimated delivery time of the required medical equipments and the action will take place when user will ask for new order , for example : i want 2 MRI Machine.</description>
+    <invocationTarget>Search_Product</invocationTarget>
+    <invocationTargetType>generatePromptResponse</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <masterLabel>Search Product</masterLabel>
+</GenAiFunction>

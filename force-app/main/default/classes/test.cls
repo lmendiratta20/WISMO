@@ -13,6 +13,8 @@ public with sharing class test {
         public String response;
     }
 
+    public static String testing = UserInfo.getUserEmail();
+
     @InvocableMethod(label='Get Order and Shipment Status')
     public static List<OutputWrapper> getOrderShipmentStatus(List<InputWrapper> inputList) {
         List<OutputWrapper> results = new List<OutputWrapper>();

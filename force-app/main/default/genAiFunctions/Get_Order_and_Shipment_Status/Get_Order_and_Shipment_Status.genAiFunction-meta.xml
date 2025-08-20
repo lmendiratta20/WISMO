@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Fetch detailed order, order item, and shipment status for a given external Order ID. This is used to handle order tracking and delay-related questions from the user.</description>
+    <invocationTarget>OrderShipmentStatusHandler</invocationTarget>
+    <invocationTargetType>apex</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <masterLabel>Get Order and Shipment Status</masterLabel>
+</GenAiFunction>

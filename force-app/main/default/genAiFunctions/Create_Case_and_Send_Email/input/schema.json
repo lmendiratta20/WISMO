@@ -1,0 +1,14 @@
+{
+  "required" : [ "userQuestion" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "userQuestion" : {
+      "title" : "User Question",
+      "description" : "Plain text string containing the user’s original question that the agent could not answer. Retrieved from the end-user conversation in Agentforce when a query is detected as out of scope. Expected format: unformatted sentence(s) of user input.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

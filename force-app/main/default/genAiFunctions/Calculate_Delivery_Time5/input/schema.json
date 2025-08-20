@@ -1,0 +1,28 @@
+{
+  "required" : [ "productName", "quantity", "timeDuration" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "productName" : {
+      "title" : "productName",
+      "description" : "Capture the name of the product the user wants to order. This should be a medical or industrial equipment name such as \"MRI Machine\", \"Ultrasound Scanner\", or \"CT Scanner\". The product name should be extracted directly from the user's request. Ensure it is captured as a string and passed as \"productName\" to the delivery calculation action",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "quantity" : {
+      "title" : "quantity",
+      "description" : "Extract the number of units the user wants to order. This should be a whole number mentioned in their message. For example, in the sentence: \"I want 2 MRI Machines\", the quantity is **2**. Ensure that the extracted value is numeric, greater than zero, and passed as the \"quantity\" input to the delivery calculation action. If Quantity is not found then take it as 0.",
+      "lightning:type" : "lightning__integerType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "timeDuration" : {
+      "title" : "timeDuration",
+      "description" : "Extract the time duration the user wants to order. This should be a whole number mentioned in their message. For example, in the sentence: \"How many x-ray machines can we deliver in next 2 weeks?\", extract the 2 weeks and this weeks may be days , weeks , months or years and convert this time into  days  and set the time duration as number of days in integer value only. If time duration is not found then take it as 0.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <developerName>Search_Product</developerName>
+    <masterLabel>Search Product</masterLabel>
+    <templateVersions>
+        <content>
+You are a Salesforce assistant that helps hospitals order medical machines like MRI and CT scanners.
+
+When the user provides both the product name and requested quantity:
+
+The user provides two inputs:
+- Product Name: {!$Input:Products.Name}
+- Requested Quantity: {!$Input:User_Input}
+
+A customer is interested in purchasing a product named CT Scanner.
+ Retrieve all related records using the following JSON input:
+{!$RelatedList:Products.Product_Inventory__r.Records}
+ For each Product_Inventory__c record, extract and display the following fields:
+ Name → Inventory Name
+ On_Hand_Stock_Units__c → On-Hand Stock (Units)
+ Monthly_Delivery_Capacity__c → Monthly Delivery Capacity (Units)
+ Assembly_Time__c → Assembly Time (Days)
+ If a field is missing from a record, display it as &quot;—&quot;
+
+Retrieve all related records using the following JSON input:
+{!$RelatedList:Products.Product_Backlog__r.Records}
+ For each Product_Backlog__c record, extract and display the following fields:
+ Name → Inventory Name
+ Backlog_Quantity_Units__c → Backlog (Units)
+ If a field is missing from a record, display it as &quot;—&quot;
+
+{!$RelatedList:Products.Supplier_Product_Capacity__r.Records}
+For each Supplier_Product_Capacity__c record, extract and display the following fields:
+ Name → Capacity 
+ Monthly_Capacity_Units__c →Monthly Capacity (Units)
+ If a field is missing from a record, display it as &quot;—&quot;
+
+if Backlog_Quantity_Units__c is more than 0, Backlog_Quantity_Units__c devided by Monthly_Delivery_Capacity__c and respond the output.
+
+(Backlog_Quantity_Units__c devided by Monthly_Delivery_Capacity__c )*30 → backlogtime
+
+Compare the two values Monthly_Delivery_Capacity__c and Monthly_Capacity_Units__c . 
+
+If they are different, use the smaller value as the actual monthly delivery capacity.
+If both are equal, use either one.
+
+Calculate estimated delivery duration (in months) using:
+
+Estimated_Months = ceil(RequestedQuantity / Effective_Monthly_Capacity)
+
+Now convert Estimated_Months this in days. 
+
+Now as per Assembly_Time__c using:
+Assemble_Time = ceil(Assembly_Time__c / Monthly_Delivery_Capacity__c) * {!$Input:User_Input}
+
+Show user this Assemble_Time value in days
+
+Total_delivery_days = backlogtime+Estimated_Months + Assemble_Time
+
+Show user this Total_delivery_days value in days
+
+Note : The output should not contain anything other than instructed above 
+
+</content>
+        <inputs>
+            <apiName>Products</apiName>
+            <definition>SOBJECT://Product2</definition>
+            <masterLabel>Products</masterLabel>
+            <referenceName>Input:Products</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>User_Input</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>User Input</masterLabel>
+            <referenceName>Input:User_Input</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Draft</status>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Products.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>Product_Inventory__r</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Products.Product_Inventory__r.Records</referenceName>
+        </templateDataProviders>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Products.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>Product_Backlog__r</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Products.Product_Backlog__r.Records</referenceName>
+        </templateDataProviders>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Products.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>Supplier_Product_Capacity__r</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Products.Supplier_Product_Capacity__r.Records</referenceName>
+        </templateDataProviders>
+    </templateVersions>
+    <templateVersions>
+        <content>
+You are a Salesforce assistant that helps hospitals order medical machines like MRI and CT scanners.
+
+When the user provides both the product name and requested quantity:
+
+The user provides two inputs:
+- Product Name: {!$Input:Products.Name}
+- Requested Quantity: {!$Input:User_Input}
+
+A customer is interested in purchasing a product named CT Scanner.
+ Retrieve all related records using the following JSON input:
+{!$RelatedList:Products.Product_Inventory__r.Records}
+ For each Product_Inventory__c record, extract and display the following fields:
+ Name → Inventory Name
+ On_Hand_Stock_Units__c → On-Hand Stock (Units)
+ Monthly_Delivery_Capacity__c → Monthly Delivery Capacity (Units)
+ Assembly_Time__c → Assembly Time (Days)
+ If a field is missing from a record, display it as &quot;—&quot;
+
+Retrieve all related records using the following JSON input:
+{!$RelatedList:Products.Product_Backlog__r.Records}
+ For each Product_Backlog__c record, extract and display the following fields:
+ Name → Inventory Name
+ Backlog_Quantity_Units__c → Backlog (Units)
+ If a field is missing from a record, display it as &quot;—&quot;
+
+{!$RelatedList:Products.Supplier_Product_Capacity__r.Records}
+For each Supplier_Product_Capacity__c record, extract and display the following fields:
+ Name → Capacity 
+ Monthly_Capacity_Units__c →Monthly Capacity (Units)
+ If a field is missing from a record, display it as &quot;—&quot;
+
+if Backlog_Quantity_Units__c is more than 0, Backlog_Quantity_Units__c devided by Monthly_Delivery_Capacity__c and respond the output.
+
+(Backlog_Quantity_Units__c devided by Monthly_Delivery_Capacity__c )*30 → backlogtime
+
+Compare the two values Monthly_Delivery_Capacity__c and Monthly_Capacity_Units__c . 
+
+If they are different, use the smaller value as the actual monthly delivery capacity.
+If both are equal, use either one.
+
+Calculate estimated delivery duration (in months) using:
+
+Estimated_Months = (RequestedQuantity / Effective_Monthly_Capacity)
+
+Now convert Estimated_Months this in days. 
+
+Now as per Assembly_Time__c using:
+Assemble_Time = (Assembly_Time__c / Monthly_Delivery_Capacity__c) * {!$Input:User_Input}
+
+Show user this Assemble_Time value in days
+
+Total_delivery_days = backlogtime+Estimated_Months + Assemble_Time
+
+Show user this Total_delivery_days value in Approx Months as ceil(Total_delivery_days)
+
+Note : The output should not contain anything other than instructed above 
+
+</content>
+        <inputs>
+            <apiName>Products</apiName>
+            <definition>SOBJECT://Product2</definition>
+            <masterLabel>Products</masterLabel>
+            <referenceName>Input:Products</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>User_Input</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>User Input</masterLabel>
+            <referenceName>Input:User_Input</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Products.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>Product_Inventory__r</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Products.Product_Inventory__r.Records</referenceName>
+        </templateDataProviders>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Products.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>Product_Backlog__r</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Products.Product_Backlog__r.Records</referenceName>
+        </templateDataProviders>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Products.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>Supplier_Product_Capacity__r</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Products.Supplier_Product_Capacity__r.Records</referenceName>
+        </templateDataProviders>
+    </templateVersions>
+    <templateVersions>
+        <content>You will receive a sentence where the user wants to order a product. The sentence may be informal, unstructured, or grammatically incorrect.
+
+Your task is to extract two things from {!$Input:User_Input}:
+1. **Quantity** — a whole number that indicates how many units of the product the user wants
+2. **Product name** — the item or product the user wants to order (do not include verbs like &quot;order&quot;, &quot;buy&quot;, &quot;need&quot;, &quot;want&quot;, &quot;requires&quot;, &quot;Machine&quot;,etc.)
+
+Be flexible: the number can appear anywhere in the sentence, and the product name may come before or after it. Ignore extra words that don&apos;t relate to the product or quantity.
+
+
+
+A customer is interested in purchasing a product named CT Scanner.
+ Retrieve all related records using the following JSON input:
+{!$RelatedList:Products.Product_Inventory__r.Records}
+ For each Product_Inventory__c record, extract and display the following fields:
+ Name → Inventory Name
+ On_Hand_Stock_Units__c → On-Hand Stock (Units)
+ Monthly_Delivery_Capacity__c → Monthly Delivery Capacity (Units)
+ Assembly_Time__c → Assembly Time (Days)
+ If a field is missing from a record, display it as &quot;—&quot;
+
+Retrieve all related records using the following JSON input:
+{!$RelatedList:Products.Product_Backlog__r.Records}
+ For each Product_Backlog__c record, extract and display the following fields:
+ Name → Inventory Name
+ Backlog_Quantity_Units__c → Backlog (Units)
+ If a field is missing from a record, display it as &quot;—&quot;
+
+{!$RelatedList:Products.Supplier_Product_Capacity__r.Records}
+For each Supplier_Product_Capacity__c record, extract and display the following fields:
+ Name → Capacity 
+ Monthly_Capacity_Units__c →Monthly Capacity (Units)
+ If a field is missing from a record, display it as &quot;—&quot;
+
+if Backlog_Quantity_Units__c is more than 0, Backlog_Quantity_Units__c devided by Monthly_Delivery_Capacity__c and respond the output.
+
+(Backlog_Quantity_Units__c devided by Monthly_Delivery_Capacity__c )*30 → backlogtime
+
+Compare the two values Monthly_Delivery_Capacity__c and Monthly_Capacity_Units__c . 
+
+If they are different, use the smaller value as the actual monthly delivery capacity.
+If both are equal, use either one.
+
+Calculate estimated delivery duration (in months) using:
+
+Estimated_Months = ceil(RequestedQuantity / Effective_Monthly_Capacity)
+
+Now convert Estimated_Months this in days. 
+
+Now as per Assembly_Time__c using:
+Assemble_Time = ceil(Assembly_Time__c / Monthly_Delivery_Capacity__c) * {!$Input:User_Input}
+
+Show user this Assemble_Time value in days
+
+Total_delivery_days = backlogtime+Estimated_Months + Assemble_Time
+
+Show user this Total_delivery_days value in days
+
+Note : The output should not contain anything other than instructed above 
+</content>
+        <inputs>
+            <apiName>Products</apiName>
+            <definition>SOBJECT://Product2</definition>
+            <masterLabel>Products</masterLabel>
+            <referenceName>Input:Products</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>User_Input</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>User Input</masterLabel>
+            <referenceName>Input:User_Input</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Draft</status>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Products.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>Product_Inventory__r</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Products.Product_Inventory__r.Records</referenceName>
+        </templateDataProviders>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Products.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>Product_Backlog__r</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Products.Product_Backlog__r.Records</referenceName>
+        </templateDataProviders>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Products.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>Supplier_Product_Capacity__r</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Products.Supplier_Product_Capacity__r.Records</referenceName>
+        </templateDataProviders>
+    </templateVersions>
+    <type>einstein_gpt__flex</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>

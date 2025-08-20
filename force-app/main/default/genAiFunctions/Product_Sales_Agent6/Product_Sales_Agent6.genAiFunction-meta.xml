@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Use this action when the user provides a request that includes a product name (such as a medical device) and a quantity they want to order or inquire about. Pass the user&apos;s full input message to the prompt template as the &quot;user_input&quot; parameter.</description>
+    <invocationTarget>Product_Sales_Agent</invocationTarget>
+    <invocationTargetType>generatePromptResponse</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <masterLabel>Product Sales Agent</masterLabel>
+</GenAiFunction>

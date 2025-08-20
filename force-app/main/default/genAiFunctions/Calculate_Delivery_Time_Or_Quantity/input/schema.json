@@ -1,0 +1,28 @@
+{
+  "required" : [ "productName", "quantity", "timeDuration" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "productName" : {
+      "title" : "productName",
+      "description" : "Product name returned by product sales agent prompt",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "quantity" : {
+      "title" : "quantity",
+      "description" : "Quantity returned by product sales agent prompt",
+      "lightning:type" : "lightning__integerType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "timeDuration" : {
+      "title" : "timeDuration",
+      "description" : "Time duration returned by product sales agent prompt",
+      "lightning:type" : "lightning__numberType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

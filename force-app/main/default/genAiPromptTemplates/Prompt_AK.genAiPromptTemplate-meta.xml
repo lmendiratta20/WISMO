@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <developerName>Prompt_AK</developerName>
+    <masterLabel>Prompt AK</masterLabel>
+    <templateVersions>
+        <content>
+You are a Salesforce assistant that helps hospitals order medical machines like MRI and CT scanners.
+
+When the user provides both the product name and requested quantity:
+
+The user provides two inputs:
+- Product Name: {!$Input:Product.Name}
+- Requested Quantity: {!$Input:user_qty}
+
+A customer is interested in purchasing a product named CT Scanner.
+ Retrieve all related records using the following JSON input:
+{!$RelatedList:Product.Product_Inventory__r.Records}
+ For each Product_Inventory__c record, extract and display the following fields:
+ Name → Inventory Name
+ On_Hand_Stock_Units__c → On-Hand Stock (Units)
+ Monthly_Delivery_Capacity__c → Monthly Delivery Capacity (Units)
+ Assembly_Time__c → Assembly Time (Days)
+ If a field is missing from a record, display it as &quot;—&quot;
+
+Retrieve all related records using the following JSON input:
+{!$RelatedList:Product.Product_Backlog__r.Records}
+ For each Product_Backlog__c record, extract and display the following fields:
+ Name → Inventory Name
+ Backlog_Quantity_Units__c → Backlog (Units)
+ If a field is missing from a record, display it as &quot;—&quot;
+
+{!$RelatedList:Product.Supplier_Product_Capacity__r.Records}
+For each Supplier_Product_Capacity__c record, extract and display the following fields:
+ Name → Capacity 
+ Monthly_Capacity_Units__c →Monthly Capacity (Units)
+ If a field is missing from a record, display it as &quot;—&quot;
+
+if Backlog_Quantity_Units__c is more than 0, Backlog_Quantity_Units__c devided by Monthly_Delivery_Capacity__c and respond the output.
+
+(Backlog_Quantity_Units__c devided by Monthly_Delivery_Capacity__c )*30 → backlogtime
+
+If {!$Input:user_qty} is less than On_Hand_Stock_Units__c, respond with message &quot;We cannot deliver the requested quantity&quot;
+ 
+
+Note : The output should not contain anything other than instructed above 
+
+</content>
+        <inputs>
+            <apiName>Product</apiName>
+            <definition>SOBJECT://Product2</definition>
+            <masterLabel>Product</masterLabel>
+            <referenceName>Input:Product</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>user_qty</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>user qty</masterLabel>
+            <referenceName>Input:user_qty</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Draft</status>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Product.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>Product_Inventory__r</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Product.Product_Inventory__r.Records</referenceName>
+        </templateDataProviders>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Product.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>Product_Backlog__r</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Product.Product_Backlog__r.Records</referenceName>
+        </templateDataProviders>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Product.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>Supplier_Product_Capacity__r</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Product.Supplier_Product_Capacity__r.Records</referenceName>
+        </templateDataProviders>
+    </templateVersions>
+    <type>einstein_gpt__flex</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>

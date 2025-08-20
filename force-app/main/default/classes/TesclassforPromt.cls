@@ -25,7 +25,7 @@ public class TesclassforPromt {
 
         try {
             List<Order> listOfOrders;
-            listOfOrders = [SELECT Id, Name, Order_ID__c, Status, EffectiveDate, TotalAmount, Account.Name, ShippingCountry
+            listOfOrders = [SELECT Id, Name, Order_ID__c, Status, EffectiveDate, TotalAmount, Account.Name, ShippingCountry, ShippingCity
                 FROM Order
                 WHERE Order_ID__c = :inputOrderId];
             if(listOfOrders != null && !listOfOrders.isEmpty()){
@@ -60,11 +60,13 @@ public class TesclassforPromt {
                 }
 
                 promptInput += 'Order Information:\n';
+                promptInput += 'Today`s Date : '+ Date.today() +'\n';
                 promptInput += 'Order ID: ' + ord.Order_ID__c + '\n';
                 promptInput += 'Status: ' + ord.Status + '\n';
                 promptInput += 'Order Date: ' + String.valueOf(ord.EffectiveDate) + '\n';
                 promptInput += 'Total Amount: ₹' + String.valueOf(ord.TotalAmount) + '\n';
                 promptInput += 'Customer: ' + ord.Account.Name + '\n\n';
+                promptInput += 'Delivery Location: ' + ord.ShippingCity +',' + ord.ShippingCountry + '\n\n';
 
                 promptInput += 'Order Items:\n';
 
@@ -86,13 +88,14 @@ public class TesclassforPromt {
 						for(Order_History__c orderHistory : orderHistoryMap.get(item.id)){
 							promptInput += '  Location : ' + orderHistory.Location__c + '\n';
 							promptInput += '  Arrival Date : ' + orderHistory.ArrivalDate__c + '\n';
-                            promptInput += '  Despatch Date : ' + orderHistory.Despatch_Date__c + '\n';
+							promptInput += '  Despatch Date : ' + orderHistory.Despatch_Date__c + '\n';
 							routeSearchText += ' ' + orderHistory.Location__c + '\n';
 						}
 
 					}
 
                 }
+
 
                 String result;
                 try {

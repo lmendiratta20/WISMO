@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <developerName>shippingRoutes</developerName>
+    <masterLabel>shippingRoutes</masterLabel>
+    <templateVersions>
+        <content>You are a global logistics planner.
+
+**Task**: Given the origin country, current shipment location, and final shipping destination, identify possible shipment routes including detailed transit information. This output will be used as search text for querying a logistics data library.
+
+**Inputs**:
+- Origin Country: {!$Input:originCountry}
+- Current Location:{!$Input:currentLocation}
+- Destination (Shipping Location): {!$Input:ShippingLocation}
+**Instructions**:
+- Return 3–5 likely shipment routes in plain text.
+- Each route must follow this format:
+ [Origin Country] → [Port or Airport Name] → [Canal or Strait if applicable] → [Transit Country or Hub] → [Destination Port or City]
+- Mention specific:
+ - Seaports (e.g., Port of Hamburg, Nhava Sheva)
+ - Canals/straits (e.g., Suez Canal, Panama Canal, Strait of Hormuz)
+ - Major logistics hubs or countries along the path
+- Use arrows (→) to indicate direction.
+- Do **not** include explanations or metadata—just list the routes, one per line, as raw text for downstream search.
+
+**Output Format (example)**:
+Germany → Port of Hamburg → Suez Canal → Jebel Ali Port, UAE → Nhava Sheva Port, India  
+Germany → Frankfurt Airport → Dubai International Airport → Mumbai Airport  
+Germany → Rotterdam Port → Strait of Hormuz → Kandla Port, India  
+
+</content>
+        <inputs>
+            <apiName>originCountry</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>originCountry</masterLabel>
+            <referenceName>Input:originCountry</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>ShippingLocation</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>ShippingLocation</masterLabel>
+            <referenceName>Input:ShippingLocation</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>currentLocation</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>currentLocation</masterLabel>
+            <referenceName>Input:currentLocation</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT41</primaryModel>
+        <status>Published</status>
+    </templateVersions>
+    <templateVersions>
+        <content>You are a global logistics planner.
+
+**Task**: Given the origin country, current shipment location, and final shipping destination, identify possible shipment routes including detailed transit information. This output will be used as search text for querying a logistics data library.
+
+**Inputs**:
+- Origin Country: {!$Input:originCountry}
+- Current Location:{!$Input:currentLocation}
+- Destination (Shipping Location): {!$Input:ShippingLocation}
+**Instructions**:
+- Return 3–5 likely shipment routes in plain text.
+- Each route must follow this format:
+ [Origin Country] → [Port or Airport Name] → [Canal or Strait if applicable] → [Transit Country or Hub] → [Destination Port or City]
+- Mention specific:
+ - Seaports (e.g., Port of Hamburg, Nhava Sheva)
+ - Canals/straits (e.g., Suez Canal, Panama Canal, Strait of Hormuz)
+ - Major logistics hubs or countries along the path
+- Use arrows (→) to indicate direction.
+- Do **not** include explanations or metadata—just list the routes, one per line, as raw text for downstream search.
+
+**Output Format (example)**:
+Germany → Frankfurt Airport → Dubai International Airport → Mumbai Airport  
+Germany → Rotterdam Port → Strait of Hormuz → Kandla Port, India  
+
+</content>
+        <inputs>
+            <apiName>originCountry</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>originCountry</masterLabel>
+            <referenceName>Input:originCountry</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>ShippingLocation</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>ShippingLocation</masterLabel>
+            <referenceName>Input:ShippingLocation</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>currentLocation</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>currentLocation</masterLabel>
+            <referenceName>Input:currentLocation</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultBedrockAnthropicClaude37Sonnet</primaryModel>
+        <status>Published</status>
+    </templateVersions>
+    <templateVersions>
+        <content>You are a global logistics planner.
+
+**Task**: Given the origin country, current shipment location, and final shipping destination, identify possible shipment routes including detailed transit information. This output will be used as search text for querying a logistics data library.
+
+**Inputs**:
+- Origin Country: {!$Input:originCountry}
+- Current Location:{!$Input:currentLocation}
+- Destination (Shipping Location): {!$Input:ShippingLocation}
+**Instructions**:
+- Return 3–5 likely shipment routes in plain text.
+- Each route must follow this format:
+ [Origin Country] → [Port or Airport Name] → [Canal or Strait if applicable] → [Transit Country or Hub] → [Destination Port or City]
+- Mention specific:
+ - Seaports (e.g., Port of Hamburg, Nhava Sheva)
+ - Canals/straits (e.g., Suez Canal, Panama Canal, Strait of Hormuz)
+ - Major logistics hubs or countries along the path
+- Use arrows (→) to indicate direction.
+- Do **not** include explanations or metadata—just list the routes, one per line, as raw text for downstream search.
+
+**Output Format (example)**:
+Germany → Frankfurt Airport → Dubai International Airport → Mumbai Airport  
+Germany → Rotterdam Port → Strait of Hormuz → Kandla Port, India  
+
+</content>
+        <inputs>
+            <apiName>originCountry</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>originCountry</masterLabel>
+            <referenceName>Input:originCountry</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>ShippingLocation</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>ShippingLocation</masterLabel>
+            <referenceName>Input:ShippingLocation</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>currentLocation</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>currentLocation</masterLabel>
+            <referenceName>Input:currentLocation</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT41</primaryModel>
+        <status>Published</status>
+    </templateVersions>
+    <type>einstein_gpt__flex</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>

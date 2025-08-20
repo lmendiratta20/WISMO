@@ -1,0 +1,21 @@
+{
+  "required" : [ "productName", "quantity" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "productName" : {
+      "title" : "productName",
+      "description" : "This will be the name of the product for which the user asks a query. For example \"CT Scanner\", \"MRI Machine\"",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "quantity" : {
+      "title" : "quantity",
+      "description" : "This will be a number. This will have the number of units for the product name specified.",
+      "lightning:type" : "lightning__integerType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

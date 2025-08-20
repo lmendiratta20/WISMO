@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <developerName>Prompt_Test_flex_lirik</developerName>
+    <masterLabel>Prompt Test flex lirik</masterLabel>
+    <templateVersions>
+        <content>You are a helpful service agent assistant.
+ A customer is interested in purchasing a product named CT Scanner.
+ Retrieve all related records using the following JSON input:
+ {!$RelatedList:Product.Product_Inventory__r.Records}
+ For each Product_Inventory__c record, extract and display the following fields:
+ Name → Inventory Name
+ On_Hand_Stock_Units__c → On-Hand Stock (Units)
+ Monthly_Delivery_Capacity__c → Monthly Delivery Capacity (Units)
+ Assembly_Time__c → Assembly Time (Days)
+ 
+If a field is missing from a record, display it as &quot;—&quot;
+ Format the response like this (one block per record):
+ 
+ 
+Inventory Name: PI000001  
+ On-Hand Stock (Units): 350  
+ Monthly Delivery Capacity (Units): 75  
+ Assembly Time (Days): 3  
+ If no related inventory records are found, respond with:
+ &quot;No inventory records found for the product CT Scanner.&quot;
+
+ Retrieve all related records using the following JSON input:
+ {!$RelatedList:Product.Product_Backlog__r.Records}
+ For each Product_Backlog__c record, extract and display the following fields:
+ Name → Product Backlog Name
+ Backlog_Quantity_Units__c → Backlog Quantity (Units)
+ 
+If a field is missing from a record, display it as &quot;—&quot;
+ Format the response like this (one block per record):
+ 
+ 
+Product Backlog Name: PB000001  
+Backlog Quantity (Units): 120  
+
+ If no related inventory records are found, respond with:
+ &quot;No backlog records found for the product CT Scanner.&quot;
+
+</content>
+        <inputs>
+            <apiName>Product</apiName>
+            <definition>SOBJECT://Product2</definition>
+            <masterLabel>Product</masterLabel>
+            <referenceName>Input:Product</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Draft</status>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Product.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>Product_Inventory__r</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Product.Product_Inventory__r.Records</referenceName>
+        </templateDataProviders>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Product.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>Product_Backlog__r</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Product.Product_Backlog__r.Records</referenceName>
+        </templateDataProviders>
+    </templateVersions>
+    <type>einstein_gpt__flex</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>

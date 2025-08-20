@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>This action will be used to send an email to the user whenever the agent is unable to answer their query. Invoke this action whenever the query asked by the user is not in the scope of the agent and a case has been created for follow-up.</description>
+    <invocationTarget>sendEmail</invocationTarget>
+    <invocationTargetType>apex</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <masterLabel>Send Email using Apex</masterLabel>
+</GenAiFunction>

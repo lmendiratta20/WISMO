@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Fetch detailed order, item, and shipment status for the current order.
+This action is intended to be used only when the user is on an Order record page.
+The orderId is automatically populated from the record context and should not be requested from the user.
+Use this to handle user questions related to order tracking, shipment status, or delivery delays.</description>
+    <invocationTarget>testing</invocationTarget>
+    <invocationTargetType>apex</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <masterLabel>Get Order and Shipment Status by order</masterLabel>
+</GenAiFunction>

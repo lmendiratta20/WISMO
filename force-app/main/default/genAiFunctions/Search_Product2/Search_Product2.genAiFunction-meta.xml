@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>able to provide estimated delivery of the medical equipments asked by the customer and run the action when user input the product name and number of units.For example : i want to order 2 MRI Machines</description>
+    <invocationTarget>Search_Product</invocationTarget>
+    <invocationTargetType>generatePromptResponse</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <masterLabel>Search Product</masterLabel>
+</GenAiFunction>

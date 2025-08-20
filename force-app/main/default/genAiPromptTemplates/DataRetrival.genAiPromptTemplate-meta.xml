@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <developerName>DataRetrival</developerName>
+    <masterLabel>DataRetrival</masterLabel>
+    <templateVersions>
+        <content> You are a Salesforce agent tasked with finding order status.
+
+ You are given the Order_ID__c = {!$Input:OrderId}
+
+ Use SOQL to:
+ 1. Find the matching Order
+ 2. Query all related OrderItem records
+   - Include all fields
+Object: Order
+- Order_ID__c (custom external key)
+- OrderNumber
+- EffectiveDate
+- Status
+- TotalAmount
+- AccountId
+- ShippingCity, ShippingCountry
+- Type (Capital/Consumable)
+
+Object: OrderItem
+- OrderId (lookup)
+- Product2Id
+- Quantity
+- UnitPrice
+- TotalPrice
+- Source_Country__c
+-Order_Type__c
+- Source_Country__c (custom)
+
+ Return:
+ - One SOQL query for the order
+ - One SOQL query for the order items
+
+</content>
+        <inputs>
+            <apiName>OrderId</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>OrderId</masterLabel>
+            <referenceName>Input:OrderId</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT41</primaryModel>
+        <status>Draft</status>
+    </templateVersions>
+    <type>einstein_gpt__flex</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>

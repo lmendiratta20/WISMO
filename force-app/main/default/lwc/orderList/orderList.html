@@ -1,0 +1,110 @@
+<template>
+    <lightning-card title="My Orders" icon-name="custom:custom63">
+        <template if:true={orders}>
+            <div class="order-grid">
+                <template for:each={orders} for:item="order">
+                    <div key={order.Id} class="order-card">
+                        <div class="order-header">
+                            <span class="order-id">#{order.Order_ID__c}</span>
+                            <lightning-badge label={order.Status} class={order.statusClass}></lightning-badge>
+                        </div>
+                        <div class="order-detail">
+                            <lightning-icon icon-name="utility:date_time" size="x-small"></lightning-icon>
+                            <span>{order.EffectiveDate}</span>
+                        </div>
+                        <div class="order-detail">
+                            <lightning-icon icon-name="utility:currency" size="x-small"></lightning-icon>
+                            <span>{order.TotalAmount}</span>
+                        </div>
+                        <div class="order-detail">
+                            <lightning-icon icon-name="utility:company" size="x-small"></lightning-icon>
+                            <span>{order.AccountName}</span>
+                        </div>
+                        <div class="order-detail">
+                            <lightning-icon icon-name="utility:world" size="x-small"></lightning-icon>
+                            <span>{order.ShippingCountry}</span>
+                        </div>
+                        <div class="order-actions">
+                            <lightning-button variant="brand" label="View Details" 
+                                data-id={order.Id} onclick={handleViewDetails}></lightning-button>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </template>
+
+        <template if:true={error}>
+            <p class="slds-text-color_error slds-p-around_small">
+                We hit a snag: {error.body.message}
+            </p>
+        </template>
+    </lightning-card>
+
+    <template if:true={isModalOpen}>
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_large">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <lightning-button-icon icon-name="utility:close" class="slds-modal__close" onclick={closeModal}></lightning-button-icon>
+                    <h2 class="slds-text-heading_medium">Order Details</h2>
+                </header>
+
+                <div class="slds-modal__content slds-p-around_medium">
+                    <lightning-record-view-form record-id={selectedOrderId} object-api-name="Order">
+                        <lightning-output-field field-name="OrderNumber"></lightning-output-field>
+                        <lightning-output-field field-name="EffectiveDate"></lightning-output-field>
+                        <lightning-output-field field-name="Status"></lightning-output-field>
+                        <lightning-output-field field-name="TotalAmount"></lightning-output-field>
+                        <lightning-output-field field-name="AccountId"></lightning-output-field>
+                        <lightning-output-field field-name="ShippingCountry"></lightning-output-field>
+                    </lightning-record-view-form>
+
+                    <template if:true={isLoadingItems}>
+                        <div class="spinner-wrap">
+                            <lightning-spinner size="small" alternative-text="Loading items"></lightning-spinner>
+                        </div>
+                    </template>
+
+                    <template if:true={hasOrderItems}>
+                        <h3 class="slds-m-top_medium slds-text-heading_small">Order Items</h3>
+                        <div class="items-grid slds-m-top_small">
+                            <template for:each={orderItems} for:item="item">
+                                <article key={item.Id} class="item-card">
+                                    <div class="item-card__header">
+                                        <div class="item-title" title={item.ProductName}>{item.ProductName}</div>
+                                        <template if:true={item.Family}>
+                                            <span class="pill">{item.Family}</span>
+                                        </template>
+                                    </div>
+
+                                    <div class="item-card__body">
+                                        <div class="kv">
+                                            <span class="k">Quantity</span>
+                                            <span class="v v-number">{item.Quantity}</span>
+                                        </div>
+                                        <div class="kv">
+                                            <span class="k">Unit Price</span>
+                                            <span class="v v-number">{item.UnitPriceDisplay}</span>
+                                        </div>
+                                        <div class="kv total-row">
+                                            <span class="k">Total</span>
+                                            <span class="v v-number">{item.TotalPriceDisplay}</span>
+                                        </div>
+                                    </div>
+                                </article>
+                            </template>
+                        </div>
+                    </template>
+
+                    <template if:true={orderItemsError}>
+                        <p class="slds-text-color_error slds-m-top_small">Unable to load order items.</p>
+                    </template>
+                </div>
+
+                <footer class="slds-modal__footer">
+                    <lightning-button variant="neutral" label="Close" onclick={closeModal}></lightning-button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

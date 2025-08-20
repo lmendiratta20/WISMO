@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Use this action when the user provides a request that includes a product name (such as a medical device) and a quantity they want to order or inquire about. 
+
+Pass the user&apos;s full input message to the prompt template as the &quot;user_input&quot; parameter.
+
+The prompt will return a JSON object with the fields:
+- &quot;Product&quot;: the name of the product (e.g., &quot;MRI Machines&quot;)
+- &quot;Quantity&quot;: the number of units requested (as a string or number)
+
+Only use this action if both product and quantity appear to be mentioned in the user&apos;s message. If the information is incomplete or ambiguous, prompt the user for clarification before calling the template.</description>
+    <invocationTarget>Product_Sales_Agent</invocationTarget>
+    <invocationTargetType>generatePromptResponse</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <masterLabel>Product Sales Agent</masterLabel>
+</GenAiFunction>

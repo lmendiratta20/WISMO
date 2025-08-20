@@ -1,0 +1,21 @@
+{
+  "required" : [ "orderId", "userQuestion" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "orderId" : {
+      "title" : "orderId",
+      "description" : "Enter the Order ID (e.g., MEI-145628)",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "userQuestion" : {
+      "title" : "userQuestion",
+      "description" : "Ask the user what question they have about the order or shipment.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

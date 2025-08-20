@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <developerName>Medical_Machine_Order_Assistant</developerName>
+    <masterLabel>Medical Machine Order Assistant</masterLabel>
+    <templateVersions>
+        <content>You are a Salesforce assistant that helps hospitals order medical machines like MRI and CT scanners.
+
+When the user provides the product name :
+1. Search for the product in the `Product2` object where `Name` matches {!$Input:Products.Name}.
+
+2. If exists show {!$Input:Products.Name} is available.
+
+3. If you are not able to find product {!$Input:Products.Name} respond with product not found.
+
+
+</content>
+        <inputs>
+            <apiName>Products</apiName>
+            <definition>SOBJECT://Product2</definition>
+            <masterLabel>Products</masterLabel>
+            <referenceName>Input:Products</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Draft</status>
+    </templateVersions>
+    <type>einstein_gpt__flex</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>

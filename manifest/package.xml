@@ -32,5 +32,29 @@
         <members>*</members>
         <name>StaticResource</name>
     </types>
-    <version>63.0</version>
+    <types>
+        <members>*</members>
+        <name>CustomObject</name>
+    </types>
+     <types>
+                <members>*</members>
+                <name>Flow</name>
+            </types>
+    <types>
+        <members>*</members>
+        <name>GenAiFunction</name>
+    </types>
+     <types>
+        <members>*</members>
+        <name>GenAiPlanner</name>
+    </types>
+     <types>
+        <members>*</members>
+        <name>GenAiPromptTemplate</name>
+    </types>
+     <types>
+        <members>*</members>
+        <name>GenAiPlannerBundle</name>
+    </types>
+    <version>62.0</version>
 </Package>

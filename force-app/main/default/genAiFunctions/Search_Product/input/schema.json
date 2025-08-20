@@ -1,0 +1,31 @@
+{
+  "required" : [ "Input:User_Input", "Input:Products" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "Input:User_Input" : {
+      "title" : "User Input",
+      "description" : "From Prompt get the Number",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "Input:Products" : {
+      "title" : "Products",
+      "description" : "product selection",
+      "lightning:type" : "lightning__recordInfoType",
+      "lightning:sObjectInfo" : {
+        "apiName" : "Product2"
+      },
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "outputLanguage" : {
+      "title" : "Prompt Operation output language",
+      "description" : "Select Prompt Operation output language",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

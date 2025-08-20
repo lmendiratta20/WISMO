@@ -1,0 +1,21 @@
+{
+  "required" : [ "Input:User_Input" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "Input:User_Input" : {
+      "title" : "User Input",
+      "description" : "Capture the full user message that includes a product name and quantity request (e.g., “I want 2 MRI machines”). Pass this entire message as the variable \"user_input\" to the prompt template.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "outputLanguage" : {
+      "title" : "Prompt Operation output language",
+      "description" : "Select Prompt Operation output language",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

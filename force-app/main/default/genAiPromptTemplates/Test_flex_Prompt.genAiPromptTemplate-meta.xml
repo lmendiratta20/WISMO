@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <developerName>Test_flex_Prompt</developerName>
+    <masterLabel>Test flex Prompt</masterLabel>
+    <templateVersions>
+        <content>You are a delivery estimation assistant for sales and service teams. Your role is to provide accurate and realistic delivery timelines for customer product requests by analyzing inventory, backlog, and supplier capacity.
+ 
+### Available Data:
+ 
+1. **Product Inventory**
+
+  - On-hand stock (units): {!$Input:Product_Inventroy.On_Hand_Stock_Units__c}
+
+  - Monthly delivery capacity (units): {!$Input:Product_Inventroy.Monthly_Delivery_Capacity_Units__c}
+
+  - Assembly time (days): {!$Input:Product_Inventroy.Assembly_Time_Days__c}
+ 
+2. **Product Backlog**
+
+  - Backlog quantity (units): {!$Input:Product_Backlog.Backlog_Quantity_Units__c}
+  - Product Name : {!$Input:Product_Backlog.Product__r.Name}
+ 
+3. **Supplier Product Capacity**
+
+  - Monthly capacity per supplier: {!$Input:Supplier_Capacity.Monthly_Capacity_Units__c}
+
+  - Supplier : {!$Input:Supplier_Capacity.Supplier__r.Supplier_Name__c}
+ 
+---
+ 
+### Fulfillment Logic (Backlog-First):
+ 
+For each product in the customer request:
+ 
+1. **Retrieve Input Data**:
+
+  - Requested Product : {!$Input:Product.Name}
+  - Requested quantity
+ 
+2. **Prioritize backlog**:
+
+  - Fulfill backlog first using on-hand stock.
+
+  - If on-hand stock ≥ backlog, use surplus (if any) toward customer request.
+
+  - If on-hand stock &lt; backlog, calculate how much backlog is fulfilled from stock and how much remains.
+ 
+3. **Fulfill remaining backlog and customer request** using monthly capacity:
+
+  - Total volume to fulfill = (remaining backlog after stock) + (requested quantity)
+
+  - Delivery time (months) = total volume ÷ monthly capacity (round up)
+ 
+4. **Add assembly time** in days to total delivery time, if applicable.
+ 
+5. **Determine confidence level**:
+
+  - High (90–95%) → if reliability ≥ 85%
+
+  - Medium (75–85%) → if 70–84%
+
+  - Low (&lt;75%) → if &lt;70%
+ 
+6. **Identify risk factors**:
+
+  - Supplier reliability &lt; 80%
+
+  - International suppliers with tariff risk
+
+  - Long assembly time (&gt;7 days)
+ 
+---
+
+### Response Format:
+ [Product Name] ([Requested Quantity] units)
+ 
+On-hand stock: [X] units
+ 
+Backlog: [Y] units
+ 
+Backlog fulfilled from stock: [A] units
+ 
+Backlog remaining after stock: [B] units
+ 
+Supplier capacity: [Z] units/month
+ 
+Estimated delivery: [N] months [+ Assembly Time if applicable] 
+</content>
+        <inputs>
+            <apiName>Product</apiName>
+            <definition>SOBJECT://Product2</definition>
+            <masterLabel>Product</masterLabel>
+            <referenceName>Input:Product</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>Product_Inventroy</apiName>
+            <definition>SOBJECT://Product_Inventory__c</definition>
+            <masterLabel>Product Inventroy</masterLabel>
+            <referenceName>Input:Product_Inventroy</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>Product_Backlog</apiName>
+            <definition>SOBJECT://Product_Backlog__c</definition>
+            <masterLabel>Product Backlog</masterLabel>
+            <referenceName>Input:Product_Backlog</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>Supplier_Capacity</apiName>
+            <definition>SOBJECT://Supplier_Product_Capacity__c</definition>
+            <masterLabel>Supplier Capacity</masterLabel>
+            <referenceName>Input:Supplier_Capacity</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>Supplier</apiName>
+            <definition>SOBJECT://Supplier__c</definition>
+            <masterLabel>Supplier</masterLabel>
+            <referenceName>Input:Supplier</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Draft</status>
+    </templateVersions>
+    <type>einstein_gpt__flex</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>

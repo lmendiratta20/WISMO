@@ -1,0 +1,1087 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <developerName>Record_Test</developerName>
+    <masterLabel>Record Test</masterLabel>
+    <templateVersions>
+        <content>Imagine you are a highly skilled operations planner working for a healthcare equipment provider. The company sells and delivers medical products such as MRI units. Customers regularly inquire about estimated delivery timelines for these units. Your job is to give them realistic, data-driven delivery estimates based on supply chain metrics stored in Salesforce.
+
+Request Received:
+A customer is interested in purchasing the following:
+- Product: {!$Input:Product.Name}
+
+You have access to the following objects in Salesforce to help estimate the delivery time:
+
+**Product Inventory**
+- Product Name
+- On-Hand Stock (Units)
+- Monthly Delivery Capacity (Units)
+- Assembly Time (Days)
+
+**Product Backlog**
+- Product Name
+- Backlog Quantity (Units)
+
+**Supplier Product Capacity**
+- Product Name
+- Supplier Name
+- Monthly Capacity (Units)
+
+**Supplier**
+- Supplier Name
+- Country / Region
+- Contact Info
+
+Instructions:
+&quot;&quot;&quot;
+Use the data available to analyze and estimate the realistic delivery time for the customer&apos;s order.
+
+Perform the following steps:
+1. **Check On-Hand Inventory**: If on-hand stock is greater than or equal to requested quantity, delivery can be immediate (1-2 weeks).
+2. **Evaluate Backlog**: Calculate how many units are already in the queue ahead of this order.
+3. **Calculate Monthly Fulfillment**: Use supplier’s monthly capacity for this product to determine how many units can be produced monthly.
+4. **Estimate Wait Time**: Based on backlog and production capacity, provide a realistic range for when the order can be fulfilled (in months).
+5. **Confidence Score**: Estimate how confident you are in this timeline based on supply availability and consistency (e.g. high backlog = lower confidence).
+6. **Handle Multiple Suppliers**: If multiple suppliers exist, choose the one with the highest output for your estimate.
+
+&quot;&quot;&quot;
+
+Expected Output Format:
+
+Analysis for requested items:
+
+- {!$Input:Product.Name}
+ - Current backlog: X units ahead of you
+ - Supplier capacity: Y units/month
+ - Realistic delivery: Z months
+ - Confidence: N%
+
+Notes:
+- Assume First-In-First-Out (FIFO) handling of orders in backlog.
+- If assembly time is significant (over 15 days), adjust delivery estimate by 0.5–1 month.
+- If data is incomplete or historical trends are limited, clearly state that confidence is low and assumptions were made.
+
+Important:
+- Always present final discount or delivery time in bold.
+- Be concise but clear in your analysis.
+
+</content>
+        <inputs>
+            <apiName>Product</apiName>
+            <definition>SOBJECT://Product2</definition>
+            <masterLabel>Product</masterLabel>
+            <referenceName>Input:Product</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Published</status>
+    </templateVersions>
+    <templateVersions>
+        <content>Imagine you are a highly skilled operations planner working for a healthcare equipment provider. The company sells and delivers medical products such as MRI units. Customers regularly inquire about estimated delivery timelines for these units. Your job is to give them realistic, data-driven delivery estimates based on supply chain metrics stored in Salesforce.
+
+Request Received:
+A customer is interested in purchasing the following:
+- Product: {!$Input:Product.Name}
+
+You have access to the following objects in Salesforce to help estimate the delivery time:
+
+**Product Inventory**
+- Product Name
+- On-Hand Stock (Units)
+- Monthly Delivery Capacity (Units)
+- Assembly Time (Days)
+
+**Product Backlog**
+- Product Name
+- Backlog Quantity (Units)
+
+**Supplier Product Capacity**
+- Product Name
+- Supplier Name
+- Monthly Capacity (Units)
+
+**Supplier**
+- Supplier Name
+- Country / Region
+- Contact Info
+
+Instructions:
+&quot;&quot;&quot;
+Use the data available to analyze and estimate the realistic delivery time for the customer&apos;s order.
+
+Perform the following steps:
+1. **Check On-Hand Inventory**: If on-hand stock is greater than or equal to requested quantity, delivery can be immediate (1-2 weeks).
+2. **Evaluate Backlog**: Calculate how many units are already in the queue ahead of this order.
+3. **Calculate Monthly Fulfillment**: Use supplier’s monthly capacity for this product to determine how many units can be produced monthly.
+4. **Estimate Wait Time**: Based on backlog and production capacity, provide a realistic range for when the order can be fulfilled (in months).
+5. **Confidence Score**: Estimate how confident you are in this timeline based on supply availability and consistency (e.g. high backlog = lower confidence).
+6. **Handle Multiple Suppliers**: If multiple suppliers exist, choose the one with the highest output for your estimate.
+
+&quot;&quot;&quot;
+
+Expected Output Format:
+
+Analysis for requested items:
+
+- {!$Input:Product.Name}
+ - Current backlog: X units ahead of you
+ - Supplier capacity: Y units/month
+ - Realistic delivery: Z months
+ - Confidence: N%
+
+Notes:
+- Assume First-In-First-Out (FIFO) handling of orders in backlog.
+- If assembly time is significant (over 15 days), adjust delivery estimate by 0.5–1 month.
+- If data is incomplete or historical trends are limited, clearly state that confidence is low and assumptions were made.
+
+Important:
+- Always present final discount or delivery time in bold.
+- Be concise but clear in your analysis.
+
+</content>
+        <inputs>
+            <apiName>Product</apiName>
+            <definition>SOBJECT://Product2</definition>
+            <masterLabel>Product</masterLabel>
+            <referenceName>Input:Product</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT4OmniMini</primaryModel>
+        <status>Published</status>
+    </templateVersions>
+    <templateVersions>
+        <content>Imagine you are a highly skilled operations planner working for a healthcare equipment provider. The company sells and delivers medical products such as MRI units. Customers regularly inquire about estimated delivery timelines for these units. Your job is to give them realistic, data-driven delivery estimates based on supply chain metrics stored in Salesforce.
+
+Request Received:
+A customer is interested in purchasing the following:
+- Product: {!$Input:Product.Name}
+
+You have access to the following objects in Salesforce to help estimate the delivery time:
+
+**Product Inventory**
+- Product Name : {!$Input:Product.Name}
+- On-Hand Stock (Units)
+- Monthly Delivery Capacity (Units)
+- Assembly Time (Days)
+
+**Product Backlog**
+- Product Name : {!$Input:Product.Name}
+- Backlog Quantity (Units)
+
+**Supplier Product Capacity**
+- Product Name : {!$Input:Product.Name}
+- Supplier Name
+- Monthly Capacity (Units)
+
+**Supplier**
+- Supplier Name
+- Country / Region
+- Contact Info
+
+Instructions:
+&quot;&quot;&quot;
+Use the data available to analyze and estimate the realistic delivery time for the customer&apos;s order.
+
+Perform the following steps:
+1. **Check On-Hand Inventory**: If on-hand stock is greater than or equal to requested quantity, delivery can be immediate (1-2 weeks).
+2. **Evaluate Backlog**: Calculate how many units are already in the queue ahead of this order.
+3. **Calculate Monthly Fulfillment**: Use supplier’s monthly capacity for this product to determine how many units can be produced monthly.
+4. **Estimate Wait Time**: Based on backlog and production capacity, provide a realistic range for when the order can be fulfilled (in months).
+5. **Confidence Score**: Estimate how confident you are in this timeline based on supply availability and consistency (e.g. high backlog = lower confidence).
+6. **Handle Multiple Suppliers**: If multiple suppliers exist, choose the one with the highest output for your estimate.
+
+&quot;&quot;&quot;
+
+Expected Output Format:
+
+Analysis for requested items:
+
+- {!$Input:Product.Name}
+ - Current backlog: X units ahead of you
+ - Supplier capacity: Y units/month
+ - Realistic delivery: Z months
+ - Confidence: N%
+
+Notes:
+- Assume First-In-First-Out (FIFO) handling of orders in backlog.
+- If assembly time is significant (over 15 days), adjust delivery estimate by 0.5–1 month.
+- If data is incomplete or historical trends are limited, clearly state that confidence is low and assumptions were made.
+
+Important:
+- Always present final discount or delivery time in bold.
+- Be concise but clear in your analysis.
+
+</content>
+        <inputs>
+            <apiName>Product</apiName>
+            <definition>SOBJECT://Product2</definition>
+            <masterLabel>Product</masterLabel>
+            <referenceName>Input:Product</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT4OmniMini</primaryModel>
+        <status>Draft</status>
+    </templateVersions>
+    <templateVersions>
+        <content>Imagine you are a highly skilled operations planner working for a healthcare equipment provider. The company sells and delivers medical products such as MRI units. Customers regularly inquire about estimated delivery timelines for these units. Your job is to give them realistic, data-driven delivery estimates based on supply chain metrics stored in Salesforce.
+
+Request Received:
+A customer is interested in purchasing the following:
+- Product: {!$Input:Product.Name}
+
+You have access to the following objects and its fields in Salesforce to help estimate the delivery time:
+
+**{!$RelatedList:Product.Product_Inventory__r.Records}
+- Product
+- On-Hand Stock (Units)
+- Monthly Delivery Capacity (Units)
+- Assembly Time (Days)
+
+**{!$RelatedList:Product.Product_Backlog__r.Records}
+- Product Name
+- Backlog Quantity (Units)
+
+**{!$RelatedList:Product.Supplier_Product_Capacity__r.Records}
+- Product Name
+- Supplier Name
+- Monthly Capacity (Units)
+
+
+Instructions:
+&quot;&quot;&quot;
+Use the data available to analyze and estimate the realistic delivery time for the customer&apos;s order.
+
+Perform the following steps:
+1. **Check On-Hand Inventory**: If on-hand stock is greater than or equal to requested quantity, delivery can be immediate (1-2 weeks).
+2. **Evaluate Backlog**: Calculate how many units are already in the queue ahead of this order.
+3. **Calculate Monthly Fulfillment**: Use supplier’s monthly capacity for this product to determine how many units can be produced monthly.
+4. **Estimate Wait Time**: Based on backlog and production capacity, provide a realistic range for when the order can be fulfilled (in months).
+5. **Confidence Score**: Estimate how confident you are in this timeline based on supply availability and consistency (e.g. high backlog = lower confidence).
+6. **Handle Multiple Suppliers**: If multiple suppliers exist, choose the one with the highest output for your estimate.
+
+&quot;&quot;&quot;
+
+Expected Output Format:
+
+Analysis for requested items:
+
+- {!$Input:Product.Name}
+ - Current backlog: X units ahead of you
+ - Supplier capacity: Y units/month
+ - Realistic delivery: Z months
+ - Confidence: N%
+
+Notes:
+- Assume First-In-First-Out (FIFO) handling of orders in backlog.
+- If assembly time is significant (over 15 days), adjust delivery estimate by 0.5–1 month.
+- If data is incomplete or historical trends are limited, clearly state that confidence is low and assumptions were made.
+
+Important:
+- Always present final discount or delivery time in bold.
+- Be concise but clear in your analysis.
+
+</content>
+        <inputs>
+            <apiName>Product</apiName>
+            <definition>SOBJECT://Product2</definition>
+            <masterLabel>Product</masterLabel>
+            <referenceName>Input:Product</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT4OmniMini</primaryModel>
+        <status>Draft</status>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Product.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>Product_Inventory__r</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Product.Product_Inventory__r.Records</referenceName>
+        </templateDataProviders>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Product.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>Product_Backlog__r</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Product.Product_Backlog__r.Records</referenceName>
+        </templateDataProviders>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Product.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>Supplier_Product_Capacity__r</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Product.Supplier_Product_Capacity__r.Records</referenceName>
+        </templateDataProviders>
+    </templateVersions>
+    <templateVersions>
+        <content>Imagine you are a highly skilled operations planner working for a healthcare equipment provider. The company sells and delivers medical products such as MRI units. Customers regularly inquire about estimated delivery timelines for these units. Your job is to give them realistic, data-driven delivery estimates based on supply chain metrics stored in Salesforce.
+
+Request Received:
+A customer is interested in purchasing the following:
+- Product: {!$Input:Product.Name}
+
+You have access to the following objects and its fields in Salesforce to help estimate the delivery time:
+
+**{!$RelatedList:Product.Product_Inventory__r.Records}
+- Product
+- On-Hand Stock (Units)
+- Monthly Delivery Capacity (Units)
+- Assembly Time (Days)
+
+**{!$RelatedList:Product.Product_Backlog__r.Records}
+- Product Name
+- Backlog Quantity (Units)
+
+**{!$RelatedList:Product.Supplier_Product_Capacity__r.Records}
+- Product Name
+- Supplier Name
+- Monthly Capacity (Units)
+
+
+Instructions:
+&quot;&quot;&quot;
+Use the data available to analyze and estimate the realistic delivery time for the customer&apos;s order.
+
+Perform the following steps:
+1. **Check On-Hand Inventory**: If on-hand stock is greater than or equal to requested quantity, delivery can be immediate (1-2 weeks).
+2. **Evaluate Backlog**: Calculate how many units are already in the queue ahead of this order.
+3. **Calculate Monthly Fulfillment**: Use supplier’s monthly capacity for this product to determine how many units can be produced monthly.
+4. **Estimate Wait Time**: Based on backlog and production capacity, provide a realistic range for when the order can be fulfilled (in months).
+5. **Confidence Score**: Estimate how confident you are in this timeline based on supply availability and consistency (e.g. high backlog = lower confidence).
+6. **Handle Multiple Suppliers**: If multiple suppliers exist, choose the one with the highest output for your estimate.
+
+&quot;&quot;&quot;
+
+Expected Output Format:
+
+Analysis for requested items:
+
+- Product
+ - Current backlog: X units ahead of you
+ - Supplier capacity: Y units/month
+ - Realistic delivery: Z months
+ - Confidence: N%
+
+Notes:
+- Assume First-In-First-Out (FIFO) handling of orders in backlog.
+- If assembly time is significant (over 15 days), adjust delivery estimate by 0.5–1 month.
+- If data is incomplete or historical trends are limited, clearly state that confidence is low and assumptions were made.
+
+Important:
+- Always present final discount or delivery time in bold.
+- Be concise but clear in your analysis.
+
+</content>
+        <inputs>
+            <apiName>Product</apiName>
+            <definition>SOBJECT://Product2</definition>
+            <masterLabel>Product</masterLabel>
+            <referenceName>Input:Product</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT4OmniMini</primaryModel>
+        <status>Draft</status>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Product.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>Product_Inventory__r</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Product.Product_Inventory__r.Records</referenceName>
+        </templateDataProviders>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Product.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>Product_Backlog__r</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Product.Product_Backlog__r.Records</referenceName>
+        </templateDataProviders>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Product.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>Supplier_Product_Capacity__r</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Product.Supplier_Product_Capacity__r.Records</referenceName>
+        </templateDataProviders>
+    </templateVersions>
+    <templateVersions>
+        <content>Imagine you are a highly skilled operations planner working for a healthcare equipment provider. The company sells and delivers medical products such as MRI units. Customers regularly inquire about estimated delivery timelines for these units. Your job is to give them realistic, data-driven delivery estimates based on supply chain metrics stored in Salesforce.
+
+Request Received:
+A customer is interested in purchasing the following:
+- Product: {!$Input:Product.Name}
+
+You have access to the following objects and its fields in Salesforce to help estimate the delivery time:
+
+**{!$RelatedList:Product.Product_Inventory__r.Records}
+- Product
+- On-Hand Stock (Units)
+- Monthly Delivery Capacity (Units)
+- Assembly Time (Days)
+
+**{!$RelatedList:Product.Product_Backlog__r.Records}
+- Product Name
+- Backlog Quantity (Units)
+
+**{!$RelatedList:Product.Supplier_Product_Capacity__r.Records}
+- Product Name
+- Supplier Name
+- Monthly Capacity (Units)
+
+
+Instructions:
+&quot;&quot;&quot;Instructions for Timeline Estimation
+When a customer requests a quantity of a product, estimate the delivery timeline by following these exact steps:
+Calculate Backlog Fulfillment Time:
+Retrieve current backlog quantity for the requested product.
+Retrieve the monthly delivery capacity from inventory.
+Compute how many months it will take to fulfill the existing backlog only.
+Calculate Time for Customer’s Requested Quantity:
+Using the same monthly capacity, calculate how many months are needed to fulfill the customer’s requested quantity after backlog is cleared.
+Add Assembly Time:
+If assembly time is more than 15 days, round it up to the nearest half month and add it to the total delivery estimate.
+Estimate Total Delivery Time:
+Sum the months needed to fulfill the backlog, the customer’s requested units, and the adjusted assembly time.
+If on-hand stock is available and greater than or equal to the request, state that delivery can be immediate (1–2 weeks).
+Supplier Consideration:
+If multiple suppliers exist, use the one with the highest monthly capacity.
+Base your delivery rate on the supplier capacity if inventory capacity is missing or lower.
+Confidence Score:
+High Confidence (90–100%): Capacity is consistent, backlog is small, and data is complete.
+Medium Confidence (60–89%): Capacity is moderate, backlog exists, some data gaps.
+Low Confidence (&lt;60%): High backlog, inconsistent supply, or missing data.
+
+✅ Expected Output Format
+Analysis for requested items:
+Product: {!$Input:Product.Name}
+Current backlog: X units
+Monthly delivery capacity: Y units/month
+Customer requested: Z units
+Assembly time: N days
+Estimated delivery time: M months
+Confidence level: N%
+
+Notes:
+- Assume First-In-First-Out (FIFO) handling of orders in backlog.
+- If assembly time is significant (over 15 days), adjust delivery estimate by 0.5–1 month.
+- If data is incomplete or historical trends are limited, clearly state that confidence is low and assumptions were made.
+
+Important:
+- Always present final discount or delivery time in bold.
+- Be concise but clear in your analysis.
+
+</content>
+        <inputs>
+            <apiName>Product</apiName>
+            <definition>SOBJECT://Product2</definition>
+            <masterLabel>Product</masterLabel>
+            <referenceName>Input:Product</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT4OmniMini</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Product.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>Product_Inventory__r</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Product.Product_Inventory__r.Records</referenceName>
+        </templateDataProviders>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Product.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>Product_Backlog__r</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Product.Product_Backlog__r.Records</referenceName>
+        </templateDataProviders>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Product.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>Supplier_Product_Capacity__r</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Product.Supplier_Product_Capacity__r.Records</referenceName>
+        </templateDataProviders>
+    </templateVersions>
+    <templateVersions>
+        <content>Imagine you are a highly skilled operations planner working for a healthcare equipment provider. The company sells and delivers medical products such as MRI units. Customers regularly inquire about estimated delivery timelines for these units. Your job is to give them realistic, data-driven delivery estimates based on supply chain metrics stored in Salesforce.
+
+Request Received:
+A customer is interested in purchasing the following:
+- Product: {!$Input:Product.Name}
+
+You have access to the following objects and its fields in Salesforce to help estimate the delivery time:
+
+**{!$RelatedList:Product.Product_Inventory__r.Records}
+- Product
+- On-Hand Stock (Units)
+- Monthly Delivery Capacity (Units)
+- Assembly Time (Days)
+
+**{!$RelatedList:Product.Product_Backlog__r.Records}
+- Product Name
+- Backlog Quantity (Units)
+
+**{!$RelatedList:Product.Supplier_Product_Capacity__r.Records}
+- Product Name
+- Supplier Name
+- Monthly Capacity (Units)
+
+
+Instructions:
+&quot;&quot;&quot;Instructions for Timeline Estimation
+When a customer requests a quantity of a product, estimate the delivery timeline by following these exact steps:
+Calculate Backlog Fulfillment Time:
+Retrieve current backlog quantity for the requested product.
+Retrieve the monthly delivery capacity from inventory.
+Compute how many months it will take to fulfill the existing backlog only.
+Calculate Time for Customer’s Requested Quantity:
+Using the same monthly capacity, calculate how many months are needed to fulfill the customer’s requested quantity after backlog is cleared.
+Add Assembly Time:
+If assembly time is more than 15 days, round it up to the nearest half month and add it to the total delivery estimate.
+Estimate Total Delivery Time:
+Sum the months needed to fulfill the backlog, the customer’s requested units, and the adjusted assembly time.
+If on-hand stock is available and greater than or equal to the request, state that delivery can be immediate (1–2 weeks).
+Supplier Consideration:
+If multiple suppliers exist, use the one with the highest monthly capacity.
+Base your delivery rate on the supplier capacity if inventory capacity is missing or lower.
+Confidence Score:
+High Confidence (90–100%): Capacity is consistent, backlog is small, and data is complete.
+Medium Confidence (60–89%): Capacity is moderate, backlog exists, some data gaps.
+Low Confidence (&lt;60%): High backlog, inconsistent supply, or missing data.
+
+✅ Expected Output Format
+Analysis for requested items:
+Product: {!$Input:Product.Name}
+Current backlog: X units
+Monthly delivery capacity: Y units/month
+Customer requested: Z units
+Assembly time: N days
+Estimated delivery time: M months
+Confidence level: N%
+
+Notes:
+- Assume First-In-First-Out (FIFO) handling of orders in backlog.
+- If assembly time is significant (over 15 days), adjust delivery estimate by 0.5–1 month.
+- If data is incomplete or historical trends are limited, clearly state that confidence is low and assumptions were made.
+
+Important:
+- Always present final discount or delivery time in bold.
+- Be concise but clear in your analysis.
+
+</content>
+        <inputs>
+            <apiName>Product</apiName>
+            <definition>SOBJECT://Product2</definition>
+            <masterLabel>Product</masterLabel>
+            <referenceName>Input:Product</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultAzureOpenAIGPT35Turbo</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Product.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>Product_Inventory__r</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Product.Product_Inventory__r.Records</referenceName>
+        </templateDataProviders>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Product.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>Product_Backlog__r</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Product.Product_Backlog__r.Records</referenceName>
+        </templateDataProviders>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Product.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>Supplier_Product_Capacity__r</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Product.Supplier_Product_Capacity__r.Records</referenceName>
+        </templateDataProviders>
+    </templateVersions>
+    <templateVersions>
+        <content>Imagine you are a highly skilled operations planner working for a healthcare equipment provider. The company sells and delivers medical products such as MRI units. Customers regularly inquire about estimated delivery timelines for these units. Your job is to give them realistic, data-driven delivery estimates based on supply chain metrics stored in Salesforce.
+
+Request Received:
+A customer is interested in purchasing the following:
+- Product: {!$Input:Product.Name}
+
+You have access to the following objects and its fields in Salesforce to help estimate the delivery time:
+
+**{!$RelatedList:Product.Product_Inventory__r.Records}
+- Product
+- On-Hand Stock (Units)
+- Monthly Delivery Capacity (Units)
+- Assembly Time (Days)
+
+**{!$RelatedList:Product.Product_Backlog__r.Records}
+- Product Name
+- Backlog Quantity (Units)
+
+**{!$RelatedList:Product.Supplier_Product_Capacity__r.Records}
+- Product Name
+- Supplier Name
+- Monthly Capacity (Units)
+
+
+Instructions:
+&quot;&quot;&quot;Instructions for Timeline Estimation
+When a customer requests a quantity of a product, estimate the delivery timeline by following these exact steps:
+Calculate Backlog Fulfillment Time:
+Retrieve current backlog quantity for the requested product.
+Retrieve the monthly delivery capacity from inventory.
+Compute how many months it will take to fulfill the existing backlog only.
+Calculate Time for Customer’s Requested Quantity:
+Using the same monthly capacity, calculate how many months are needed to fulfill the customer’s requested quantity after backlog is cleared.
+Add Assembly Time:
+If assembly time is more than 15 days, round it up to the nearest half month and add it to the total delivery estimate.
+Estimate Total Delivery Time:
+Sum the months needed to fulfill the backlog, the customer’s requested units, and the adjusted assembly time.
+If on-hand stock is available and greater than or equal to the request, state that delivery can be immediate (1–2 weeks).
+Supplier Consideration:
+If multiple suppliers exist, use the one with the highest monthly capacity.
+Base your delivery rate on the supplier capacity if inventory capacity is missing or lower.
+Confidence Score:
+High Confidence (90–100%): Capacity is consistent, backlog is small, and data is complete.
+Medium Confidence (60–89%): Capacity is moderate, backlog exists, some data gaps.
+Low Confidence (&lt;60%): High backlog, inconsistent supply, or missing data.
+
+✅ Expected Output Format
+Analysis for requested items:
+Product: {!$Input:Product.Name}
+Current backlog: X units
+Monthly delivery capacity: Y units/month
+Customer requested: Z units
+Assembly time: N days
+Estimated delivery time: M months
+Confidence level: N%
+
+Notes:
+- Assume First-In-First-Out (FIFO) handling of orders in backlog.
+- If assembly time is significant (over 15 days), adjust delivery estimate by 0.5–1 month.
+- If data is incomplete or historical trends are limited, clearly state that confidence is low and assumptions were made.
+
+Important:
+- Always present final discount or delivery time in bold.
+- Be concise but clear in your analysis.
+
+</content>
+        <inputs>
+            <apiName>Product</apiName>
+            <definition>SOBJECT://Product2</definition>
+            <masterLabel>Product</masterLabel>
+            <referenceName>Input:Product</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT4Omni</primaryModel>
+        <status>Draft</status>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Product.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>Product_Inventory__r</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Product.Product_Inventory__r.Records</referenceName>
+        </templateDataProviders>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Product.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>Product_Backlog__r</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Product.Product_Backlog__r.Records</referenceName>
+        </templateDataProviders>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Product.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>Supplier_Product_Capacity__r</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Product.Supplier_Product_Capacity__r.Records</referenceName>
+        </templateDataProviders>
+    </templateVersions>
+    <templateVersions>
+        <content>You are a helpful service agent assistant. A customer is interested in purchasing a product named &quot;{!$Input:Product.Name}&quot;. 
+
+1. Retrieve all related Product Inventory records for this {!$Input:Product.Name}
+2. For each Product Inventory record, display the following details:
+  - Inventory Name
+  - On-Hand Stock (Units)
+  - Monthly Delivery Capacity (Units)
+  - Assembly Time (Days)
+
+Present the results in a clear, easy-to-read table.
+
+If no related Product Inventory records are found, respond with:
+&quot;No inventory records found for the product &apos;{!$Input:Product.Name}&apos;.&quot;
+
+</content>
+        <inputs>
+            <apiName>Product</apiName>
+            <definition>SOBJECT://Product2</definition>
+            <masterLabel>Product</masterLabel>
+            <referenceName>Input:Product</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT4OmniMini</primaryModel>
+        <status>Draft</status>
+    </templateVersions>
+    <templateVersions>
+        <content>You are a helpful service agent assistant. A customer is interested in purchasing a product named {!$Input:Product.Name}
+
+1. Retrieve all related Product Inventory records for this {!$Input:Product.Name}
+2. For each Product Inventory record, display the following details:
+ - Inventory Name
+ - On-Hand Stock (Units)
+ - Monthly Delivery Capacity (Units)
+ - Assembly Time (Days)
+
+Present the results in a clear, easy-to-read table.
+
+If no related Product Inventory records are found, respond with:
+&quot;No inventory records found for the product {!$Input:Product.Name}
+
+</content>
+        <inputs>
+            <apiName>Product</apiName>
+            <definition>SOBJECT://Product2</definition>
+            <masterLabel>Product</masterLabel>
+            <referenceName>Input:Product</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT4OmniMini</primaryModel>
+        <status>Published</status>
+    </templateVersions>
+    <templateVersions>
+        <content>You are a helpful service agent assistant. A customer is interested in purchasing a product named {!$Input:Product.Name}
+
+1. Retrieve all related {!$RelatedList:Product.Product_Inventory__r.Records} records for this {!$Input:Product.Name}
+2. For each Product Inventory record, display the following details:
+ - Inventory Name
+ - On-Hand Stock (Units)
+ - Monthly Delivery Capacity (Units)
+ - Assembly Time (Days)
+
+Present the results in a clear, easy-to-read table.
+
+If no related Product Inventory records are found, respond with:
+&quot;No inventory records found for the product {!$Input:Product.Name}
+
+</content>
+        <inputs>
+            <apiName>Product</apiName>
+            <definition>SOBJECT://Product2</definition>
+            <masterLabel>Product</masterLabel>
+            <referenceName>Input:Product</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT4OmniMini</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Product.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>Product_Inventory__r</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Product.Product_Inventory__r.Records</referenceName>
+        </templateDataProviders>
+    </templateVersions>
+    <templateVersions>
+        <content>You are a helpful service agent assistant.
+ A customer is interested in purchasing a product named CT Scanner.
+Retrieve all related records using the following JSON input:
+{!$RelatedList:Product.Product_Inventory__r.Records}
+For each Product_Inventory__c record, extract and display the following fields:
+Name → Inventory Name
+On_Hand_Stock_Units__c → On-Hand Stock (Units)
+Monthly_Delivery_Capacity__c → Monthly Delivery Capacity (Units)
+Assembly_Time__c → Assembly Time (Days)
+If a field is missing from a record, display it as &quot;—&quot;
+
+Retrieve all related records using the following JSON input:
+{!$RelatedList:Product.Product_Backlog__r.Records}
+For each Product_Backlog__c record, extract and display the following fields:
+Name →  Product Backlog Name
+Product__c → Product
+Backlog_Quantity_Units__c → Backlog Quantity (Units)
+
+If a field is missing from a record, display it as &quot;—&quot;
+
+Retrieve all related records using the following JSON input:
+{!$RelatedList:Product.Supplier_Product_Capacity__r.Records}
+For each Supplier_Product_Capacity__c record, extract and display the following fields:
+Name → Supplier Product Capacity Name
+Monthly_Capacity_Units__c → Monthly Capacity (Units)
+
+If a field is missing from a record, display it as &quot;—&quot;
+
+Format the response like this (one block per record):
+
+Inventory Name: PI000001  
+On-Hand Stock (Units): 350  
+Monthly Delivery Capacity (Units): 75  
+Assembly Time (Days): 3  
+
+Format the response like this for product backlog(one block per record):
+Product Backlog Name : PB00007
+Product : CT Scan
+Backlog Quantity (Units) : 10
+
+Format the response like this for supplier capacity(one block per record):
+Supplier Product Capacity Name : SPN00000
+Monthly Capacity (Units) : 5
+
+
+
+If no related inventory records are found, respond with:
+&quot;No inventory records found for the product CT Scanner.&quot;
+
+Do not display any additional explanation or commentary outside the key-value blocks or the fallback message
+
+</content>
+        <inputs>
+            <apiName>Product</apiName>
+            <definition>SOBJECT://Product2</definition>
+            <masterLabel>Product</masterLabel>
+            <referenceName>Input:Product</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Draft</status>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Product.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>Product_Inventory__r</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Product.Product_Inventory__r.Records</referenceName>
+        </templateDataProviders>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Product.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>Product_Backlog__r</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Product.Product_Backlog__r.Records</referenceName>
+        </templateDataProviders>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Product.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>Supplier_Product_Capacity__r</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Product.Supplier_Product_Capacity__r.Records</referenceName>
+        </templateDataProviders>
+    </templateVersions>
+    <templateVersions>
+        <content>You are a helpful service agent assistant. A customer is interested in purchasing a product named {!$Input:Product.Name}
+
+1. Retrieve all related records for this {!$Input:Product.Name}
+2. For each Product Inventory record, display the following details:
+ - Inventory Name
+ - On-Hand Stock (Units)
+ - Monthly Delivery Capacity (Units)
+ - Assembly Time (Days)
+
+Present the results in a clear, easy-to-read table.
+
+If no related Product Inventory records are found, respond with:
+&quot;No inventory records found for the product {!$Input:Product.Name}
+
+</content>
+        <inputs>
+            <apiName>Product</apiName>
+            <definition>SOBJECT://Product2</definition>
+            <masterLabel>Product</masterLabel>
+            <referenceName>Input:Product</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT4OmniMini</primaryModel>
+        <status>Published</status>
+    </templateVersions>
+    <templateVersions>
+        <content>You are a helpful service agent assistant. A customer is interested in purchasing a product with a name similar to {!$Input:Product.Name}
+
+1. Search for the Product record where the Name **contains or is similar to** {!$Input:Product.Name}(case-insensitive).
+2. Once you find the product, retrieve all related Product Inventory records.
+3. Display Inventory Name, Quantity Available, Location, and Status in a table format.
+
+If no records are found, say:  
+&quot;No inventory records found for the product {!$Input:Product.Name}&apos;.
+
+</content>
+        <inputs>
+            <apiName>Product</apiName>
+            <definition>SOBJECT://Product2</definition>
+            <masterLabel>Product</masterLabel>
+            <referenceName>Input:Product</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4</primaryModel>
+        <status>Draft</status>
+    </templateVersions>
+    <type>einstein_gpt__flex</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>

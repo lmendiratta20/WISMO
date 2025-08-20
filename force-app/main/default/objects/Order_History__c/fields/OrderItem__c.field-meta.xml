@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OrderItem__c</fullName>
+    <deleteConstraint>Restrict</deleteConstraint>
+    <label>OrderItem</label>
+    <referenceTo>OrderItem</referenceTo>
+    <relationshipLabel>Order Histories</relationshipLabel>
+    <relationshipName>Order_Histories</relationshipName>
+    <required>true</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>This agent action will be invoked after &quot;Product_Sales_Agent&quot; action has been completed. This action will take product name and quantity as inputs and call the required apex class.</description>
+    <invocationTarget>DeliveryCalculationService</invocationTarget>
+    <invocationTargetType>apex</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <masterLabel>Calculate Delivery Time</masterLabel>
+</GenAiFunction>

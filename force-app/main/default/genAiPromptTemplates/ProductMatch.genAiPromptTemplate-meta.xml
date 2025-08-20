@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <developerName>ProductMatch</developerName>
+    <masterLabel>ProductMatch</masterLabel>
+    <templateVersions>
+        <content>You are a smart sales assistant working with a Salesforce product catalog for a medical device company.
+
+Users will ask about delivery timelines using product names that may contain spelling errors or informal terms.
+
+Your tasks:
+1. Identify all products and their quantities from the user message {!$Input:User_Question}
+2. Match each to the closest product from the list below, even if the spelling is off.
+3. If no confident match is found, return matchedName as null.
+4. Output a clean, structured JSON with this format:
+
+{
+ &quot;products&quot;: [
+  {
+   &quot;requestedName&quot;: &quot;&lt;raw product name from user&gt;&quot;,
+   &quot;matchedName&quot;: &quot;&lt;closest product from Salesforce list or null&gt;&quot;,
+   &quot;quantity&quot;: &lt;quantity&gt;
+  },
+  ...
+ ]
+}
+
+Here is the list of valid Salesforce product names:
+{!$EinsteinSearch:Default_Wismo_Product_Retriever_1Cx_9vl79c33560.results}
+
+</content>
+        <inputs>
+            <apiName>User_Question</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>User Question</masterLabel>
+            <referenceName>Input:User_Question</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Draft</status>
+        <templateDataProviders>
+            <definition>invocable://getEinsteinRetrieverResults/Default_Wismo_Product_Retriever_1Cx_9vl79c33560</definition>
+            <label>Default Wismo_Product Retriever</label>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>searchText</parameterName>
+                <valueExpression>{!$Input:User_Question}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://List&lt;String&gt;</definition>
+                <isRequired>false</isRequired>
+                <parameterName>outputFieldNames</parameterName>
+                <valueExpression>[&quot;Chunk&quot;]</valueExpression>
+            </parameters>
+            <referenceName>EinsteinSearch:Default_Wismo_Product_Retriever_1Cx_9vl79c33560</referenceName>
+        </templateDataProviders>
+    </templateVersions>
+    <type>einstein_gpt__flex</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>

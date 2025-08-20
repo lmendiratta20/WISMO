@@ -1,4 +1,4 @@
-public with sharing class OrderShipmentHandler {
+public without sharing class OrderShipmentHandler {
 
     public class InputWrapper {
         @InvocableVariable(required=true)
@@ -7,8 +7,6 @@ public with sharing class OrderShipmentHandler {
 		@InvocableVariable(required=true)
     	public String userQuestion;
 
-		@InvocableVariable(required=true)
-    	public String shippingRoute;
     }
 
     public class OutputWrapper {
@@ -16,7 +14,7 @@ public with sharing class OrderShipmentHandler {
         public String response;
     }
 
-    @InvocableMethod(label='Get Order and Shipment Status')
+    @InvocableMethod(label='Get Order and Shipment Handler')
     public static List<OutputWrapper> getOrderShipmentData(List<InputWrapper> inputList) {
         List<OutputWrapper> results = new List<OutputWrapper>();
 
@@ -30,11 +28,11 @@ public with sharing class OrderShipmentHandler {
         try {
             List<Order> listOfOrders;
             if(isCalledFromRecordPage){
-                listOfOrders = [SELECT Id, Name, Order_ID__c, Status, EffectiveDate, TotalAmount, Account.Name, ShippingCountry
+                listOfOrders = [SELECT Id, Name, Order_ID__c, Status, EffectiveDate, TotalAmount, Account.Name, ShippingCountry, ShippingCity
                     FROM Order
                     WHERE ID = :inputOrderId];  
             } else{
-                listOfOrders = [SELECT Id, Name, Order_ID__c, Status, EffectiveDate, TotalAmount, Account.Name, ShippingCountry
+                listOfOrders = [SELECT Id, Name, Order_ID__c, Status, EffectiveDate, TotalAmount, Account.Name, ShippingCountry, ShippingCity
                     FROM Order
                     WHERE Order_ID__c = :inputOrderId];
             }
@@ -49,7 +47,7 @@ public with sharing class OrderShipmentHandler {
                 Map<Id, Shipment__c> shipmentMap = new Map<Id, Shipment__c>();
                 for (Shipment__c shp : [
                 SELECT Id, Order_Product__c, Status__c, Courier_Name__c, Tracking_Number__c,
-                       Current_Location__c, Expected_Delivery__c, Delay_Reason__c
+                       Current_Location__c, Expected_Delivery__c, Actual_Delivery_Date__c
                 FROM Shipment__c
                 WHERE Order_Product__c IN :orderItems
                 ]) {
@@ -70,11 +68,13 @@ public with sharing class OrderShipmentHandler {
                 }
 
                 promptInput += 'Order Information:\n';
+                promptInput += 'Today`s Date : '+ Date.today() +'\n';
                 promptInput += 'Order ID: ' + ord.Order_ID__c + '\n';
                 promptInput += 'Status: ' + ord.Status + '\n';
                 promptInput += 'Order Date: ' + String.valueOf(ord.EffectiveDate) + '\n';
                 promptInput += 'Total Amount: ₹' + String.valueOf(ord.TotalAmount) + '\n';
                 promptInput += 'Customer: ' + ord.Account.Name + '\n\n';
+                promptInput += 'Delivery Location: ' + ord.ShippingCity +',' + ord.ShippingCountry + '\n\n';
 
                 promptInput += 'Order Items:\n';
 
@@ -88,7 +88,8 @@ public with sharing class OrderShipmentHandler {
                         promptInput += '  Shipment Status: ' + shp.Status__c + '\n';
                         promptInput += '  Courier: ' + shp.Courier_Name__c + ', Tracking: ' + shp.Tracking_Number__c + '\n';
                         promptInput += '  Current Location: ' + shp.Current_Location__c + '\n';
-                        promptInput += '  Expected Delivery: ' + String.valueOf(shp.Expected_Delivery__c) + '\n';
+                        promptInput += '  Expected Delivery Date: ' + String.valueOf(shp.Expected_Delivery__c) + '\n';
+                        promptInput += '  Actual Delivery Date: ' + String.valueOf(shp.Actual_Delivery_Date__c) + '\n';
                     } else {
                         promptInput += '  Shipment Info: Not yet available.\n\n';
                     }
@@ -134,9 +135,12 @@ public with sharing class OrderShipmentHandler {
                     WHERE Order_ID__c LIKE : '%'+orderID+'%']; 
 
                 String response ='Did you mean : \n';
-
-                for(Order order : orders){
-                    response += order.Order_ID__c +' \n';
+                if(orders != null && !orders.isEmpty()){
+                    for(Order order : orders){
+                        response += order.Order_ID__c +' \n';
+                    }
+                } else {
+                    response = 'Sorry can you try with different order ID';
                 }
                 OutputWrapper out = new OutputWrapper();
                 out.response = response;

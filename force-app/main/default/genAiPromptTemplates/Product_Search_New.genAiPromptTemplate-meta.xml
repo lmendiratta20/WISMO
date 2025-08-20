@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <developerName>Product_Search_New</developerName>
+    <masterLabel>Product Search New</masterLabel>
+    <templateVersions>
+        <content>Given the user input below, identify the quantity of machines and the product name.
+
+User can be asked for multiple product and quantity.
+
+{!$Input:User_Query}
+
+
+Return result in format:
+
+{
+ &quot;quantity&quot;: &lt;number&gt;,
+ &quot;product&quot;: &quot;&lt;product name&gt;&quot;
+ &quot;Delivery Time:&quot;
+ &quot; delivery status&quot; : 
+}
+</content>
+        <inputs>
+            <apiName>User_Query</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>User Query</masterLabel>
+            <referenceName>Input:User_Query</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Draft</status>
+    </templateVersions>
+    <type>einstein_gpt__flex</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>

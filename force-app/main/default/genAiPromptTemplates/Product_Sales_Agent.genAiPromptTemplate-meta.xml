@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <developerName>Product_Sales_Agent</developerName>
+    <masterLabel>Product Sales Agent</masterLabel>
+    <templateVersions>
+        <content>Given the user input below, identify the quantity of machines and the product name.
+
+User can be asked for multiple product and quantity.
+
+{!$Input:User_Input}
+
+
+Return result in format:
+
+{
+ &quot;quantity&quot;: &lt;number&gt;,
+ &quot;product&quot;: &quot;&lt;product name&gt;&quot;
+ &quot;Delivery Time:&quot;
+ &quot; delivery status&quot; : 
+}
+</content>
+        <inputs>
+            <apiName>User_Input</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>User Input</masterLabel>
+            <referenceName>Input:User_Input</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Published</status>
+    </templateVersions>
+    <templateVersions>
+        <content>You are a helpful AI assistant that extracts structured product order information from user input.
+
+Your task is to identify the **product name** and **quantity** from {!$Input:User_Input}
+
+Output the result in **JSON format** like this:
+{
+ &quot;Product Name&quot;: &quot;&lt;product name&gt;&quot;,
+ &quot;Quantity&quot;: &lt;quantity as a number&gt;
+}
+
+Examples:
+
+Input: &quot;I want 10 MRI machines&quot;
+Output:
+{
+ &quot;Product Name&quot;: &quot;MRI Machine&quot;,
+ &quot;Quantity&quot;: 10
+}
+
+Input: &quot;Please send me 3 X-ray scanners&quot;
+Output:
+{
+ &quot;Product Name&quot;: &quot;X-ray Scanner&quot;,
+ &quot;Quantity&quot;: 3
+}
+
+Input: &quot;Can I get 15 ultrasound devices?&quot;
+Output:
+{
+ &quot;Product Name&quot;: &quot;Ultrasound Device&quot;,
+ &quot;Quantity&quot;: 15
+}
+
+Now extract the product name and quantity from this input:
+{{user_input}}
+
+</content>
+        <inputs>
+            <apiName>User_Input</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>User Input</masterLabel>
+            <referenceName>Input:User_Input</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Draft</status>
+    </templateVersions>
+    <templateVersions>
+        <content>You are a helpful AI assistant that extracts structured product order information from user input.
+
+Your task is to identify the following from the {!$Input:User_Input}:
+- Product Name
+- Quantity (default to 1 if not specified)
+- Delivery Time (if mentioned)
+
+Your output should be in this JSON format:
+{
+ &quot;Product Name&quot;: &quot;&lt;product name&gt;&quot;,
+ &quot;Quantity&quot;: &lt;quantity as a number&gt;,
+ &quot;Delivery Time&quot;: &quot;&lt;delivery time or null if not specified&gt;&quot;
+}
+
+Instructions:
+- Normalize product names to singular form and capitalize properly (e.g., &quot;machines&quot; → &quot;Machine&quot;).
+- If quantity is not mentioned, assume 1.
+- If delivery time is not mentioned, return `&quot;Delivery Time&quot;: null`.
+
+Examples:
+
+Input: &quot;I want 10 MRI machines&quot;
+Output:
+{
+ &quot;Product Name&quot;: &quot;MRI Machine&quot;,
+ &quot;Quantity&quot;: 10,
+ &quot;Delivery Time&quot;: null
+}
+
+Input: &quot;Please send 3 CT scanners within 5 days&quot;
+Output:
+{
+ &quot;Product Name&quot;: &quot;CT Scanner&quot;,
+ &quot;Quantity&quot;: 3,
+ &quot;Delivery Time&quot;: &quot;5 days&quot;
+}
+
+Input: &quot;I want an x-ray machine in 2 weeks&quot;
+Output:
+{
+ &quot;Product Name&quot;: &quot;X-ray Machine&quot;,
+ &quot;Quantity&quot;: 1,
+ &quot;Delivery Time&quot;: &quot;2 weeks&quot;
+}
+
+Now extract the information from this input:
+{{user_input}}
+
+</content>
+        <inputs>
+            <apiName>User_Input</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>User Input</masterLabel>
+            <referenceName>Input:User_Input</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Draft</status>
+    </templateVersions>
+    <templateVersions>
+        <content>Given the user input below, identify the quantity of machines and the product name.
+
+User can be asked for multiple product and quantity.
+
+{!$Input:User_Input}
+
+
+Return result in format:
+
+{
+ &quot;quantity&quot;: &lt;number&gt;,
+ &quot;product&quot;: &quot;&lt;product name&gt;&quot;
+ &quot;Delivery Time:&quot;
+ &quot; delivery status&quot; : 
+}
+</content>
+        <inputs>
+            <apiName>User_Input</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>User Input</masterLabel>
+            <referenceName>Input:User_Input</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT4OmniMini</primaryModel>
+        <status>Published</status>
+    </templateVersions>
+    <templateVersions>
+        <content>Given the user input below, identify the quantity of machines and the product name.
+
+User can be asked for multiple product and quantity.
+
+Call apex class {!$Apex:ProductDataFetcher.Prompt} and match product name from {!$Input:User_Input} and showmatched  product name form data retrieve by apex class.
+
+
+Return result in format:
+
+{
+ &quot;quantity&quot;: &lt;number&gt;,
+ &quot;product&quot;: &quot;&lt;product name&gt;&quot;
+ &quot;Delivery Time:&quot;
+ &quot; delivery status&quot; : 
+}
+</content>
+        <inputs>
+            <apiName>User_Input</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>User Input</masterLabel>
+            <referenceName>Input:User_Input</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT4OmniMini</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>apex://ProductDataFetcher</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>User_Input</parameterName>
+                <valueExpression>{!$Input:User_Input}</valueExpression>
+            </parameters>
+            <referenceName>Apex:ProductDataFetcher</referenceName>
+        </templateDataProviders>
+    </templateVersions>
+    <type>einstein_gpt__flex</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>
